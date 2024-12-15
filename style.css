@@ -1,0 +1,480 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body Styling */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  /* Header Styling */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1e1e1e;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  }
+  
+  .header .container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Logo Styling */
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    width: 40px;
+    margin-right: 10px;
+  }
+  
+  .logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6347; /* Highlight color */
+  }
+  
+  /* Navigation Styling */
+  .nav ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  .nav ul li {
+    margin: 0 1rem;
+  }
+  
+  .nav ul li a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #ffffff;
+    transition: color 0.3s;
+  }
+  
+  .nav ul li a:hover {
+    color: #ff6347; /* Highlight color on hover */
+  }
+  
+  /* CTA Button Styling */
+  .cta button {
+    background-color: #ff6347;
+    color: #ffffff;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .cta button:hover {
+    background-color: #ff4500;
+  }
+  /* styles.css */
+
+
+#hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #1e1e1e, #333333);
+    position: relative;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff4757;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #f1f1f1;
+    margin-bottom: 30px;
+}
+
+.hero-buttons button {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1rem;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hero-buttons button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(255, 71, 87, 0.7);
+}
+
+#hangman-animation {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 200px;
+}
+
+.features-section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.features-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ff6f61; /* Accent color */
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.feature-card {
+    background-color: #1e1e1e; /* Slightly lighter background for cards */
+    border: 2px solid #ff6f61; /* Accent border */
+    border-radius: 10px;
+    width: 280px;
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 111, 97, 0.5);
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #ffcccb;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: #dcdcdc;
+}
+
+/* styles.css */
+
+
+  
+  header {
+    background-color: #282828;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  header h1 {
+    color: #fff;
+    font-size: 2.5rem;
+  }
+  
+  #how-to-play {
+    background-color: #222222;
+    padding: 40px 20px;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  #how-to-play h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  #how-to-play p {
+    font-size: 1.2rem;
+    color: #b3b3b3;
+    margin-bottom: 40px;
+  }
+  
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .step {
+    background-color: #333333;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .step h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .step p {
+    color: #ccc;
+  }
+  
+  button {
+    background-color: #00b894;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #00a67d;
+  }
+  
+  footer {
+    background-color: #282828;
+    color: #b3b3b3;
+    text-align: center;
+    padding: 10px;
+    
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer p {
+    font-size: 0.9rem;
+  }
+  
+  /* styles.css */
+
+
+.leaderboard {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.leaderboard-container {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+h2 {
+    color: #f1c40f;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#leaderboard-table th, #leaderboard-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #555;
+}
+
+#leaderboard-table th {
+    background-color: #444;
+}
+
+#leaderboard-table td {
+    background-color: #222;
+}
+
+button {
+    background-color: #f1c40f;
+    color: #1a1a1a;
+    font-size: 1rem;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e67e22;
+    transition: background-color 0.3s;
+}
+
+/* Global Styles */
+
+h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 40px 0;
+    color: #f8c12c; /* Golden color for the header */
+}
+
+/* Testimonials Section */
+#testimonials {
+    padding: 60px 0;
+    background-color: #222; /* Darker background for the section */
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.testimonials-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.testimonial {
+    background-color: #333; /* Darker background for each testimonial */
+    border-radius: 10px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease-in-out;
+}
+
+.testimonial:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.avatar img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 3px solid #f8c12c; /* Golden border around the avatar */
+}
+
+.text p {
+    font-size: 1.2rem;
+    color: #ddd; /* Light grey text for the testimonial */
+    margin-bottom: 10px;
+}
+
+.player-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #f8c12c; /* Golden color for player name */
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #181818;
+    color: #fff;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #222;
+    padding: 30px 0;
+    font-size: 14px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-links, .footer-socials {
+    width: 45%;
+}
+
+.footer-links h4, .footer-socials h4 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer-links ul, .footer-socials ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li, .footer-socials li {
+    margin: 10px 0;
+}
+
+.footer-links a, .footer-socials a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover, .footer-socials a:hover {
+    color: #1e90ff;
+}
+
+/* Social Icons */
+.social-icon img {
+    width: 30px;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon img:hover {
+    transform: scale(1.2);
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+    text-align: center;
+    background-color: #111;
+    padding: 10px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #777;
+}
+
+/* Hover Effect for Links */
+.footer-links a:hover, .footer-socials a:hover {
+    color: #1e90ff;
+}
+.footer-socials{
+    position: relative;
+    left: 100px;
+}

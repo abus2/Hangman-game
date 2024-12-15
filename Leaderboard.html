@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game - Leaderboard</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and Background */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2e2e2e;
+            color: #f1f1f1;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Navbar */
+        header .navbar {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        /* Leaderboard Section */
+        .leaderboard-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .leaderboard-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #f1f1f1;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #444;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #555;
+        }
+
+        th {
+            color: #ddd;
+        }
+
+        td {
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1rem;
+            color: #bbb;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #555;
+            width: 200px;
+            color: #333;
+        }
+
+        /* Pagination */
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 5px 10px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #444;
+            border: none;
+            cursor: pointer;
+        }
+
+        .pagination button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <h1>Hangman Game</h1>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="leaderboard-section">
+            <h2>Leaderboard</h2>
+            
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search Player..." oninput="searchLeaderboard()">
+            </div>
+
+            <div class="leaderboard-preview">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-list">
+                        <!-- Leaderboard data will be injected here by JS -->
+                    </tbody>
+                </table>
+                <a href="index.html">
+                <button id="view-full-leaderboard">BACK</button>
+                </a>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button id="prev-page">Previous</button>
+                <button id="next-page">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Hangman Game. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Fake leaderboard data for preview
+        const leaderboardData = [
+            { rank: 1, player: 'Alice', score: 100 },
+            { rank: 2, player: 'Bob', score: 95 },
+            { rank: 3, player: 'Charlie', score: 90 },
+            { rank: 4, player: 'David', score: 85 },
+            { rank: 5, player: 'Eve', score: 80 },
+            { rank: 6, player: 'Frank', score: 75 },
+            { rank: 7, player: 'Grace', score: 70 },
+            { rank: 8, player: 'Heidi', score: 65 },
+            { rank: 9, player: 'Ivan', score: 60 },
+            { rank: 10, player: 'Jack', score: 55 },
+        ];
+
+        let currentPage = 1;
+        const itemsPerPage = 5;
+
+        // Function to populate the leaderboard preview
+        function populateLeaderboard(page = 1) {
+            const leaderboardList = document.getElementById('leaderboard-list');
+            const startIndex = (page - 1) * itemsPerPage;
+            const paginatedData = leaderboardData.slice(startIndex, startIndex + itemsPerPage);
+
+            // Clear existing data
+            leaderboardList.innerHTML = '';
+
+            // Add the top players for the current page
+            paginatedData.forEach(entry => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${entry.rank}</td>
+                    <td>${entry.player}</td>
+                    <td>${entry.score}</td>
+                `;
+                leaderboardList.appendChild(row);
+            });
+        }
+
+        // Function to search for a player in the leaderboard
+        function searchLeaderboard() {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const filteredData = leaderboardData.filter(entry =>
+                entry.player.toLowerCase().includes(searchInput)
+            );
+            populateLeaderboardFiltered(filteredData);
+        }
+
+        // Function to populate filtered leaderboard data
+        function populateLeaderboardFiltered(filteredData) {
+            const leaderboardList = document.getElementById('leaderboard-list');
+            leaderboardList.innerHTML = '';
+
+            filteredData.forEach(entry => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${entry.rank}</td>
+                    <td>${entry.player}</td>
+                    <td>${entry.score}</td>
+                `;
+                leaderboardList.appendChild(row);
+            });
+        }
+
+        // Event listeners for pagination buttons
+        document.getElementById('next-page').addEventListener('click', () => {
+            if ((currentPage * itemsPerPage) < leaderboardData.length) {
+                currentPage++;
+                populateLeaderboard(currentPage);
+            }
+        });
+
+        document.getElementById('prev-page').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                populateLeaderboard(currentPage);
+            }
+        });
+
+        // Display full leaderboard when button is clicked
+        document.getElementById('view-full-leaderboard').addEventListener('click', () => {
+            fetch('/full-leaderboard')
+                .then(response => response.json())
+                .then(data => {
+                    alert(JSON.stringify(data, null, 2)); // For demonstration, just show in an alert
+                })
+                .catch(error => console.error('Error fetching leaderboard:', error));
+        });
+
+        // Load the leaderboard when the page loads
+        window.onload = () => {
+            populateLeaderboard();
+        };
+    </script>
+</body>
+</html>

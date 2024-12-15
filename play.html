@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman Game - Improved</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      color: white;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #ff2a68;
+    }
+
+    .game-container {
+      background-color: #222;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+    }
+
+    .hidden-word {
+      font-size: 40px;
+      letter-spacing: 10px;
+      font-weight: bold;
+      margin: 20px;
+      color: #fff;
+    }
+
+    .wrong-guesses {
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    input {
+      font-size: 22px;
+      padding: 10px;
+      width: 50px;
+      text-align: center;
+      border: 2px solid #333;
+      border-radius: 5px;
+      margin-top: 20px;
+      margin-right: 10px;
+      outline: none;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 24px;
+      margin-top: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    button:hover:enabled {
+      background-color: #45a049;
+    }
+
+    .message {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #fff;
+    }
+
+    .lives {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .lives span {
+      font-size: 24px;
+      margin: 0 5px;
+      color: red;
+    }
+
+    #timer-bar {
+      width: 100%;
+      height: 10px;
+      background-color: #ccc;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    #timer-progress {
+      height: 100%;
+      background-color: #4CAF50;
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .pause-resume-buttons {
+      margin-top: 20px;
+    }
+
+    .pause-resume-buttons button {
+      margin: 0 10px;
+      padding: 10px 15px;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .pause-resume-buttons button:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Hangman Game</h1>
+
+  <div class="game-container">
+    <!-- Game Display -->
+    <div class="hidden-word" id="word-display">_ _ _ _ _</div>
+    <p>Incorrect guesses: <span id="wrong-guesses"></span></p>
+    <div class="lives" id="lives-display">Lives: </div>
+    <p>Time left: <span id="timer">30</span>s</p>
+
+    <!-- Timer Progress Bar -->
+    <div id="timer-bar">
+      <div id="timer-progress"></div>
+    </div>
+
+    <!-- Guess Input -->
+    <div>
+      <input type="text" id="letter-input" maxlength="1" placeholder="Enter a letter">
+      <button id="guess-btn" onclick="guessLetter()">Guess</button>
+    </div>
+
+    <div class="pause-resume-buttons">
+      <button onclick="pauseTimer()">Pause</button>
+      <button onclick="resumeTimer()">Resume</button>
+    </div>
+
+    <!-- Message Display -->
+    <p id="message" class="message"></p>
+    <button id="restart-btn" onclick="restartGame()">Restart</button>
+  </div>
+
+  <script>
+    let selectedWord, guessedLetters, wrongGuesses, lives, timerInterval, timerPaused;
+    const maxLives = 6;
+
+    function startGame() {
+      selectedWord = "javascript";
+      guessedLetters = [];
+      wrongGuesses = [];
+      lives = maxLives;
+      timerPaused = false;
+      updateWordDisplay();
+      updateLivesDisplay();
+      startTimer();
+    }
+
+    function updateWordDisplay() {
+      const display = selectedWord.split("").map(letter => guessedLetters.includes(letter) ? letter : "_").join(" ");
+      document.getElementById("word-display").textContent = display;
+    }
+
+    function updateLivesDisplay() {
+      const livesDisplay = document.getElementById("lives-display");
+      livesDisplay.innerHTML = "";
+      for (let i = 0; i < lives; i++) {
+        livesDisplay.innerHTML += "<span>❤</span>"; // Heart emoji
+      }
+    }
+
+    function guessLetter() {
+      const letter = document.getElementById("letter-input").value.toLowerCase();
+      if (selectedWord.includes(letter)) {
+        guessedLetters.push(letter);
+        updateWordDisplay();
+        checkWin();
+      } else {
+        wrongGuesses.push(letter);
+        lives--;
+        updateLivesDisplay();
+        checkLoss();
+      }
+      document.getElementById("letter-input").value = "";
+    }
+
+    function startTimer() {
+      let timeLeft = 75;
+      timerPaused = false;
+      document.getElementById("timer").textContent = timeLeft;
+      const timerProgress = document.getElementById("timer-progress");
+      timerProgress.style.width = "100%";
+      timerInterval = setInterval(() => {
+        if (!timerPaused) {
+          timeLeft--;
+          document.getElementById("timer").textContent = timeLeft;
+          timerProgress.style.width = (timeLeft / 75) * 100 + "%";
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            endGame("Game Over! Time's up!");
+          }
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      timerPaused = true;
+    }
+
+    function resumeTimer() {
+      timerPaused = false;
+    }
+
+    function checkWin() {
+      if (!document.getElementById("word-display").textContent.includes("_")) {
+        endGame("Congratulations, you won!");
+      }
+    }
+
+    function checkLoss() {
+      if (lives === 0) {
+        endGame(`Game Over! The word was "${selectedWord}".`);
+      }
+    }
+
+    function endGame(message) {
+      clearInterval(timerInterval);
+      document.getElementById("message").textContent = message;
+    }
+
+    function restartGame() {
+      startGame();
+    }
+
+    window.onload = startGame;
+  </script>
+</body>
+</html>

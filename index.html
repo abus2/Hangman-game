@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <div class="container">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="logo.png" alt="Hangman Logo">
+        <span>Hangman</span>
+      </div>
+      
+      <!-- Navigation Menu -->
+      <nav class="nav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#how-to-play">How to Play</a></li>
+          <li><a href="Leaderboard.html">Leaderboard</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <!-- Call-to-Action Button -->
+      <div class="cta">
+        <a href="startplay.html">
+          <button>Start Playing</button>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1>Guess the Word. Save the Hangman!</h1>
+      <p>Test your vocabulary skills in the ultimate word-guessing game!</p>
+      <div class="hero-buttons">
+        <a href="play.html">
+        <button>Play Now</button>
+        </a>
+        <button id="learn-more">Learn More</button>
+      </div>
+    </div>
+    <canvas id="hangman-animation"></canvas>
+  </section>
+
+
+  <section class="features-section">
+    <h2>Why Play Hangman Here?</h2>
+    <div class="features-container">
+        <div class="feature-card">
+            <h3>Interactive Design</h3>
+            <p>Experience a responsive and engaging interface that works seamlessly across all devices.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Multiplayer Mode</h3>
+            <p>Challenge your friends and family in real-time with our exciting multiplayer mode.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Word Categories</h3>
+            <p>Pick your favorite topic from various categories like Movies, Science, and General Knowledge.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Leaderboard</h3>
+            <p>Compete with players worldwide and see who can become the ultimate wordsmith.</p>
+        </div>
+    </div>
+</section>
+
+
+
+  <!-- Header Section -->
+  <header>
+    <h1>How to Play Hangman</h1>
+  </header>
+
+  <!-- How to Play Section -->
+  <section id="how-to-play">
+    <div class="container">
+      <h2>Learn to Play in Seconds!</h2>
+      <p>It's easy to play! Just follow these simple steps:</p>
+      
+      <div class="steps">
+        <div class="step">
+          <h3>Step 1: Choose Your Category</h3>
+          <p>Select a category that interests you, like Movies, Science, or General Knowledge.</p>
+        </div>
+        <div class="step">
+          <h3>Step 2: Guess the Letters</h3>
+          <p>Start guessing letters. If the letter is in the word, it will appear in the correct position.</p>
+        </div>
+        <div class="step">
+          <h3>Step 3: Save the Hangman</h3>
+          <p>Make sure to guess correctly before the hangman is drawn! You have a limited number of wrong guesses.</p>
+        </div>
+      </div>
+     <a href="startplay.html">
+      <button id="start-button">Start Playing</button>
+     </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Hangman Game. ABOOBACKER SHARFUDHEEN</p>
+  </footer>
+
+  
+
+<!-- Leaderboard Preview Section -->
+<section class="leaderboard">
+    <div class="leaderboard-container">
+        <h2>Can You Be the Top Wordsmith?</h2>
+        <table id="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be dynamically inserted here -->
+            </tbody>
+        </table>
+        <a href="Leaderboard.html">
+        <button id="view-leaderboard-btn" onclick="viewFullLeaderboard()">View Full Leaderboard</button>
+        </a>
+    </div>
+</section>
+
+
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <h2>What Players Are Saying</h2>
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <div class="avatar">
+                        <img src="oliver.jpg" alt="Player 1">
+                    </div>
+                    <div class="text">
+                        <p>"This game is so fun! I love the challenge and the different themes!"</p>
+                        <span class="player-name">John Doe</span>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="avatar">
+                        <img src="IMG-20241214-WA0091.jpg" alt="Player 2">
+                    </div>
+                    <div class="text">
+                        <p>"A great way to test my vocabulary skills. I'm addicted!"</p>
+                        <span class="player-name">Jane Smith</span>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="avatar">
+                        <img src="IMG-20241214-WA0104.jpg" alt="Player 3">
+                    </div>
+                    <div class="text">
+                        <p>"The multiplayer mode makes this game even more exciting! Highly recommend it."</p>
+                        <span class="player-name">AVA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+   
+        <!-- Footer Section -->
+       
+    
+                <div class="footer-socials">
+                    <h4>Follow Us</h4>
+                   
+                        <a href="https://www.instagram.com/a_b_u_s?igsh=cDg2MTAzZTFwczFo" class="social-icon"><ion-icon name="logo-instagram"></ion-icon></a>
+                        <a href="https://github.com/abus2" class="social-icon"><ion-icon name="logo-github"></ion-icon></a>
+                        <a href="https://www.facebook.com/profile.php?id=61555336857143" class="social-icon"><ion-icon name="logo-facebook"></ion-icon></a>
+                  
+                </div>
+            </div>
+    
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hangman Game. ABOOBACKER SHARFUDHEEN</p>
+            </div>
+        </footer>
+    
+      
+    
+
+   
+
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="script.js"></script>
+  <script src="script.py"></script>
+</body>
+</html>
